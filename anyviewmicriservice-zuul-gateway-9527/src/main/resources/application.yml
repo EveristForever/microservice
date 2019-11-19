@@ -1,0 +1,22 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: anyviewmicroservice-zuul-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true
+info:
+  app.name: anyview-microservice-zuul-9527
+  company.name: www.anyview.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+zuul:
+  routes:
+    studentlogin.serviceId: anyview-microservice-student-login
+    studentlogin.path: /studentlogin/**
+  ignored-services: anyview-microservice-student-login

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: anyview-microservice-student-login
+  profiles:
+    active: product
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  session:
+    store-type: none
+  redis:
+    database: 0
+    timeout: 5000
+    host: 101.132.120.137
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-idle: 8
+        maxWait: -1
+        maxidle: 8
+        minidle: 0
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.anyview.entity
+
+
+

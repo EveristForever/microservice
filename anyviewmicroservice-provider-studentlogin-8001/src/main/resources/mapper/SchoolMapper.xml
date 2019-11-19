@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.SchoolDao">
+
+    <resultMap id="SchoolMap" type="School">
+        <id property="id" column="UnID"/>
+        <result property="schoolName" column="UnName"/>
+        <result property="schoolCreater" column="Creater"/>
+        <result property="schoolCreateTime" column="CreateTime"/>
+        <result property="schoolUpdater" column="Updater"/>
+        <result property="schoolUpdateTime" column="UpdateTime"/>
+        <result property="status" column="Enabled"/>
+    </resultMap>
+
+    <!--直接使用resultType=school类查询不出数据内容只有数据数量-->
+    <select id="getAllUniversities" resultMap="SchoolMap">
+		select * from universitytable where Enabled = 1
+	</select>
+
+    <select id="getUnnameByUnid" parameterType="int" resultType="String">
+		select UnName from universitytable where UnID=#{unid}
+	</select>
+</mapper>

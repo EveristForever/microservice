@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.StudentDao">
+
+	<resultMap id="StudentMap" type="Student">
+		<id property="id" column="SID"/>
+		<result property="name" column="SName"/>
+		<result property="schoolId" column="UnID"/>
+		<result property="sex" column="Ssex"/>
+		<result property="state" column="State"/>
+		<result property="username" column="Sno"/>
+		<result property="password" column="SPsw"/>
+		<result property="status" column="Enabled"/>
+		<result property="roleId" column="RoleId"/>
+		<result property="email" column="Email"/>
+		<result property="loginStatus" column="LoginStatus"/>
+		<result property="logTime" column="LogTime"/>
+		<result property="logIP" column="LogIP"/>
+		<result property="logPort" column="LogPort"/>
+		<result property="saccumTime" column="SaccumTime"/>
+	</resultMap>
+
+	<select id="getStudentById" parameterType="Long" resultMap="StudentMap">
+		select * from studenttable where SID=#{sid} AND Enabled=1
+	</select>
+
+	<select id="findStudentLoginState" parameterType="int">
+		select * from studenttable where SID=#{sid}
+	</select>
+	
+	<update id="updateStudentLoginState" parameterType="Long">
+		update studenttable set LoginStatus = 0 where SID=#{sid}
+	</update>
+	
+	<select id="getStudentInfo" resultMap="StudentMap">
+		select * from studenttable where Sno=#{sno} and UnID=#{unid} and Enabled=1
+	</select>
+	
+	<select id="getStudent" parameterType="String" resultMap="StudentMap">
+		select * from studenttable where SID=#{sid} and Enabled=1
+	</select>
+	
+	<update id="setnewPassword">
+		update studenttable set Spsw=#{spsw} where SID=#{sid}
+	</update>
+	
+	<update id="setLoginSuccessStatus">
+		update studenttable set LoginStatus=1,LogTime=#{logtime},LogIP=#{ip},LogPort=#{port} where Sno=#{sno} and UnID=#{unid}
+	</update>
+	
+</mapper>

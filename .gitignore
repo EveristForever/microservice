@@ -1,0 +1,5 @@
+# Project exclude paths
+/anyviewmicriservice-zuul-gateway-9527/target/
+/anyviewmicroservice-consumer-student-login-feign/target/
+/anyviewmicroservice-eureka-7001/target/
+/anyviewmicroservice-provider-studentlogin-8001/target/
