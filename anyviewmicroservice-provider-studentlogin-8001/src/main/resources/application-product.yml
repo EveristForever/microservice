@@ -9,7 +9,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
+      defaultZone: http://localhost:7001/eureka/
   instance:
     instance-id: anyview-microservice-student-login-8001 #自定义服务名称信息
     #prefer-ip-address: true     #访问路径可以显示IP地址

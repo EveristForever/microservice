@@ -11,11 +11,11 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+//@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "studenttable")
+//@Table(name = "studenttable")
 public class Student extends User implements Serializable {
 
     private static final long serialVersionUID = -4456817152842583701L;
@@ -23,7 +23,7 @@ public class Student extends User implements Serializable {
     /**
      * id
      */
-    @Id
+//    @Id
     @Column(name = "SID", updatable = false)
     private Long id;
 

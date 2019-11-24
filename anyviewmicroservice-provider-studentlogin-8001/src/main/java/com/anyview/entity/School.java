@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+//@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "UniversityTable")
+//@Table(name = "UniversityTable")
 public class School implements Serializable {
 
     private static final long serialVersionUID = 600921205729511206L;
