@@ -12,6 +12,7 @@
         <module>anyviewmicroservice-eureka-7001</module>
         <module>anyviewmicroservice-consumer-student-login-feign</module>
         <module>anyviewmicriservice-zuul-gateway-9527</module>
+        <module>anyviewmicroservice-provider-getschemes-8002</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.SchemeContentDao">
+	<resultMap id="SchemeContentMap" type="java.util.HashMap">
+		<result property="id" column="ID"/>
+		<result property="vid" column="VID"/>
+		<result property="pid" column="PID"/>
+		<association property="pContent" column="PID"
+					 select="com.anyview.dao.QuestionDao.selectPContentById" javaType="String"/>
+		<association property="courseId" column="VID"
+					 select="com.anyview.dao.SchemeDao.selectCourseIdById" javaType="int"/>
+	</resultMap>
+
+    <resultMap id="SchemeContent" type="com.anyview.entity.SchemeContent">
+        <id property="ID" column="ID"/>
+        <result property="schemeId" column="VID"/>
+        <result property="questionId" column="PID"/>
+        <result property="VPName" column="VPName"/>
+        <result property="VChapName" column="VChapName"/>
+        <result property="tStatus" column="Status"/>
+        <result property="Score" column="Score"/>
+        <result property="Updater" column="Updater"/>
+        <result property="StartTime" column="StartTime"/>
+        <result property="FinishTime" column="FinishTime"/>
+        <result property="UpdateTime" column="UpdateTime"/>
+        <result property="difficulty" column="difficulty"/>
+        <result property="status" column="Enabled"/>
+    </resultMap>
+
+	<resultMap id="CatalogContentMap" type="com.anyview.dto.response.CatalogInfo">
+		<result property="pid" column="PID"/>
+		<result property="chapName" column="VChapName"/>
+		<result property="pName" column="VPName"/>
+		<result property="startTime" column="StartTime"/>
+		<result property="finishTime" column="FinishTime"/>
+		<result property="score" column="Score"/>
+		<result property="updateTime" column="UpdateTime"/>
+	</resultMap>
+	
+	<select id="getSchemeContentList" parameterType="int" resultMap="SchemeContentMap">
+		select ID,VID,PID from schemecontenttable where VID=#{vid} 
+	</select>
+	
+	<select id="getSchemeContentTable" resultType="java.util.HashMap">
+		select ID as id,VPName as vpname,VChapName as vchapname from schemecontenttable where PID=#{pid} and VID=#{vid}
+	</select>
+	
+	<select id="getCatalogContent" parameterType="int" resultMap="CatalogContentMap">
+		select t1.PID,t1.VChapName,t1.VPName,t1.StartTime,t1.FinishTime,t2.Score,
+		t2.UpdateTime from schemecontenttable t1 where t1.VID=#{vid}
+	</select>
+
+    <!-- resultType查询结果字段缺失原因：字段名与属性名不对应 -->
+	<select id="getContentBySchemeId" resultMap="SchemeContent" parameterType="Long">
+		select * from schemecontenttable where VID = #{vid} and Enabled = 1;
+	</select>
+
+</mapper>

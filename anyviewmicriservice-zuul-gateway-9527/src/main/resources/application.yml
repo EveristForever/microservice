@@ -19,4 +19,7 @@ zuul:
   routes:
     studentlogin.serviceId: anyview-microservice-student-login
     studentlogin.path: /studentlogin/**
+    getschemes.serviceId: anyview-microservice-student-getschemes&exercise
+    getschemes.path: /getschemes/**
+
   ignored-services: anyview-microservice-student-login

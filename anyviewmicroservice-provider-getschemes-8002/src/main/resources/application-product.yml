@@ -1,0 +1,21 @@
+server:
+  port: 8002
+
+spring:
+  datasource:
+    #useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    #url: jdbc:mysql://120.24.163.117:3306/anyview_system?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://101.132.148.120:10010/anyview_system?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: anyview-microservice-student-getschemes-8002 #自定义服务名称信息
+    #prefer-ip-address: true     #访问路径可以显示IP地址
+
+info:
+  app.name: anyview-microservice-student-getschemes
+  company.name: www.anyview.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}

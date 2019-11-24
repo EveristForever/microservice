@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.CatalogDao">
+	<resultMap id="CatalogMap" type="com.anyview.dto.response.CatalogInfo">
+		<result property="vid" column="VID"/>
+		<result property="pid" column="PID"/>
+		<result property="chapName" column="VChapName"/>
+		<result property="pName" column="VPName"/>
+		<result property="startTime" column="StartTime"/>
+		<result property="finishTime" column="FinishTime"/>
+		<result property="eid" column="EID"/>
+		<result property="score" column="Score"/>
+		<result property="runResult" column="RunResult"/>
+		<result property="runErrCount" column="RunErrCount"/>
+		<result property="cmpCount" column="CmpCount"/>
+		<result property="cmpRightCount" column="CmpRightCount"/>
+		<result property="cmpErrorCount" column="CmpErrorCount"/>
+		<result property="firstPastTime" column="FirstPastTime"/>
+		<result property="lastTime" column="LastTime"/>
+		<result property="updateTime" column="UpdateTime"/>
+	</resultMap>
+	
+	<select id="getCatalogs" resultMap="CatalogMap">
+		select t1.VID,t1.PID,t1.VChapName,t1.VPName,t1.StartTime,t1.FinishTime,t2.EID,
+		t2.Score,t2.RunResult,t2.RunErrCount,t2.CmpCount,t2.CmpRightCount,t2.CmpErrorCount,
+		t2.FirstPastTime,t2.LastTime,t2.UpdateTime from schemecontenttable t1,exercisetable t2
+		where t1.Enabled=1 and t1.VID=#{vid} and t1.Status=1 and t2.SID=#{sid} and 
+		t2.VID=#{vid} and t2.PID=t1.PID and t2.CID=#{cid} order by t1.VChapName asc,t1.VPName asc;
+	</select>
+
+	<select id="getByQuestionId" parameterType="Integer" resultMap="CatalogMap">
+		select t1.VID,t1.PID,t1.VChapName,t1.VPName,t1.StartTime,t1.FinishTime,t2.EID,
+		t2.Score,t2.RunResult,t2.RunErrCount,t2.CmpCount,t2.CmpRightCount,t2.CmpErrorCount,
+		t2.FirstPastTime,t2.LastTime,t2.UpdateTime from schemecontenttable t1,exercisetable t2
+		where t1.Enabled=1,t1.PID=#{pid} and t2.PID=#{pid}
+	</select>
+</mapper>

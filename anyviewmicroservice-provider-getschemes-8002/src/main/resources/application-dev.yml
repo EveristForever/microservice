@@ -1,0 +1,7 @@
+server:
+  port: 9999
+
+spring:
+  datasource:
+    #useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/anyview_system?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false

@@ -7,10 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="anyviewmicriservicezuulgateway9527" />
+        <module name="anyviewmicroserviceprovidergetschemes8002" />
         <module name="anyviewmicroserviceconsumerstudentloginfeign" />
         <module name="anyview-microservice-provider-studentlogin-8001" />
         <module name="anyviewmicroserviceeureka7001" />
+        <module name="anyviewmicriservicezuulgateway9527" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

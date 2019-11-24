@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.SchemeDao">
+
+	<resultMap id="SchemeMap" type="Scheme">
+		<id property="id" column="VID"/>
+		<result property="tableName" column="VName"/>
+		<result property="tableType" column="Kind"/>
+		<result property="courseId" column="CourseID"/>
+		<result property="tableLevel" column="Visit"/>
+		<result property="tableStatus" column="Status"/>
+		<result property="tableCreater" column="table_creater"/>
+		<result property="tableCreateTime" column="CreateTime"/>
+		<result property="tableUpdater" column="table_updater"/>
+		<result property="tableUpdateTime" column="UpdateTime"/>
+		<result property="totalTime" column="totalTime"/>
+		<result property="status" column="Enabled"/>
+		<result property="fullScore" column="FullScore"/>
+		<result property="totalNum" column="TotalNum"/>
+	</resultMap>
+
+
+	<select id="selectCourseIdById" parameterType="int" resultType="int" >
+		select CourseID from schemetable where VID=#{vid}
+	</select>
+
+	<select id="getByIds" resultMap="SchemeMap">
+		select * from schemetable where VID in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		and Enabled = 1
+	</select>
+
+
+	<select id="getVidAndVName" parameterType="int" resultType="java.util.HashMap">
+		select VID as vid ,VName as vname from schemetable t1 where t1.Enabled=1 and
+		 t1.Kind=0 and t1.Status=1 and VID in (select VID from class_course_schemetable t2 
+		 where t2.Enabled=1 and CTCID in (select ID from class_teacher_coursetable t3 where 
+		 CID=#{cid} and t3.Enabled=1))
+	</select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.QuestionDao">
+
+	<resultMap id="QuestionMap" type="Question">
+		<id property="id" column="PID"/>
+		<result property="questionName" column="PName"/>
+		<result property="chapter" column="chapter"/>
+		<result property="publicLevel" column="public_level"/>
+		<result property="specificSchool" column="specific_school"/>
+		<result property="difficulty" column="Degree"/>
+		<result property="state" column="state"/>
+		<result property="remark" column="PMemo"/>
+		<result property="questionBankId" column="LID"/>
+		<result property="content" column="PContent"/>
+		<result property="createdPerson" column="CreatePerson"/>
+		<result property="createdDate" column="CreateTime"/>
+		<result property="updatePerson" column="UpdatePerson"/>
+		<result property="updateDate" column="UpdateTime"/>
+		<result property="status" column="Enabled"/>
+	</resultMap>
+
+	<select id="selectPContentById" parameterType="int" resultType="String">
+		select PContent from problemtable where PID=#{pid}
+	</select>
+
+	<select id="getById" parameterType="Long" resultMap="QuestionMap">
+		select * from problemtable where PID=#{id}
+	</select>
+
+	<select id="getPContent"  parameterType="int" resultType="String">
+		select PContent from problemtable where PID=#{pid}
+	</select>
+	
+</mapper>
