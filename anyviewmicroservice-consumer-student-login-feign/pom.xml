@@ -11,8 +11,6 @@
 
     <artifactId>anyviewmicroservice-consumer-student-login-feign</artifactId>
 
-
-
     <description>学生端登录微服务消费者</description>
 
     <dependencies>
