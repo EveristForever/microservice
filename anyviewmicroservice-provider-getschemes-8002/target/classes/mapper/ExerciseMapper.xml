@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.ExerciseDao">
+	<resultMap id="ExerciseMap" type="com.anyview.entity.Exercise">
+		<id property="id" column="EID" />
+		<result property="studentId" column="SID" />
+		<result property="schemeId" column="VID" />
+		<result property="score" column="Score" />
+		<result property="pageScore" column="pageScore" />
+		<result property="attitudeScore" column="attitudeScore" />
+		<result property="questionId" column="PID" />
+		<result property="classId" column="CID" />
+		<result property="accumTime" column="AccumTime" />
+		<result property="courseId" column="CourseID" />
+		<result property="kind" column="Kind" />
+		<result property="eContent" column="EContent" />
+		<result property="eComment" column="EComment" />
+		<result property="firstPastTime" column="FirstPastTime"/>
+		<result property="lastTime" column="LastTime"/>
+		<result property="cmpCount" column="CmpCount"/>
+		<result property="cmpRightCount" column="CmpRightCount"/>
+		<result property="cmpErrorCount" column="CmpErrorCount"/>
+		<result property="updatePerson" column="UpdatePerson" />
+		<result property="updateTime" column="UpdateTime" />
+		<result property="createTime" column="CreateTime"/>
+		<result property="status" column="Enabled" />
+		<result property="runResult" column="RunResult" />
+		<result property="runErrCount" column="RunErrCount"/>
+		<result property="random" column="random"/>
+		<result property="errorOrder" column="errorOrder"/>
+	</resultMap>
+
+	<update id="saveExercise">
+		update exercisetable set EContent=#{eContent},LastTime=#{lastTime} where EID=#{eid}
+	</update>
+
+	<update id="updateCmpTimesDao">
+		update exercisetable set CmpCount=#{cmpCount},CmpRightCount=#{cmpRightCount},
+		CmpErrorCount=#{cmpErrorCount} where EID=#{eid}
+	</update>
+
+	<update id="updateRunResult">
+		update exercisetable set RunResult=#{runResult},RunErrCount=#{runErrCount} where EID=#{eid}
+		<if test="FirstPastTime==null">
+			and FirstPastTime=#{firstPassTime}
+		</if>
+	</update>
+
+	<select id="getExercise" resultMap="ExerciseMap">
+		select * from exercisetable where PID=#{pid} and VID=#{vid} and SID=#{sid} 
+	</select>
+
+	<select id="getExerciseContent" parameterType="long" resultMap="ExerciseMap">
+		select * from exercisetable where EID=#{eid}
+	</select>
+
+	<select id="getStuExerciseCount" resultType="Integer">
+		select count(*) from exercisetable where SID=#{sid}
+	</select>
+
+	<insert id="addExercise">
+		insert into exercisetable(PID,VID,EContent,CourseID,SID,CID) values(#{pid},#{vid},#{eContent},#{courseId},#{sid},#{cid})
+	</insert>
+	<!--20190907 add  -->
+	<update id="saveExercise1"  >
+        update exercisetable set eContent=#{eContent},cmpcount=#{cmpCount}, lasttime=now(),runResult=#{runResult},runErrCount=#{runErrCount},
+        cmpRightCount=#{cmpRightCount},cmpErrorCount=#{cmpErrorCount},kind=#{kind},accumTime=#{accumTime},firstPastTime=#{firstPastTime}
+
+        where eId= #{id}
+    </update>
+
+	<select id="getExerciseByEid" parameterType="INTEGER" resultMap="ExerciseMap">
+        select * from exercisetable where eid=#{Eid}
+    </select>
+
+	<update id="saveRandom">
+		update exercisetable set random=#{random}, errorOrder=#{errorOrder}
+		where eId=#{id}
+	</update>
+</mapper>	

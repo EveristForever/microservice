@@ -15,11 +15,17 @@ info:
   company.name: www.anyview.com
   build.artifactId: ${project.artifactId}
   build.version: ${project.version}
+#zuul:
+#  routes:
+#    studentlogin.serviceId: anyview-microservice-student-login
+#    studentlogin.path: /studentlogin/**
 zuul:
   routes:
-    studentlogin.serviceId: anyview-microservice-student-login
-    studentlogin.path: /studentlogin/**
-    getschemes.serviceId: anyview-microservice-student-getschemes&exercise
-    getschemes.path: /getschemes/**
-
-  ignored-services: anyview-microservice-student-login
+    login-route:
+      service-id: anyview-microservice-student-login
+      path: /studentlogin/**
+    getschemes-route:
+      path: /getschemes/**
+      url: http://localhost:8002/
+#      service-id: anyview-microservice-student-getschemes  用服务名不知道为什么不行
+ignored-services: '*'

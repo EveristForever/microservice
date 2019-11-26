@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anyview.dao.CourseArrangeAndSchemeDao">
+	<resultMap id="CourseArrangeAndSchemeMap" type="CourseArrangeAndScheme">
+		<id property="id" column="ID"/>
+		<result property="courseArrangeId" column="CTCID"/>
+		<result property="classId" column="CID"/>
+		<result property="schemeId" column="VID"/>
+		<result property="status" column="Enabled"/>
+
+	</resultMap>
+
+
+
+	<select id="getByClassId" parameterType="Integer" resultMap="CourseArrangeAndSchemeMap">
+		select * from class_course_schemetable where CID=#{cid} and Enabled=1;
+	</select>
+</mapper>

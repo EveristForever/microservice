@@ -37,5 +37,6 @@ public class SchemeServiceImpl implements SchemeService {
    @Override
     public List<Scheme> getSchemesByCourseIds(List<Long> courseIds) {
         return schemeRepository.findByCourseIdInAndStatus(courseIds,1);
+
     }
 }
